@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.util.List;
 
 @RestControllerAdvice
@@ -37,7 +38,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<?> handleDataAccessException(DataAccessException ex, HttpServletRequest request) {
         ErrorCode errorCode = ErrorCode.DATABASE_ERROR;
-        System.out.println(ex.getCause());
         if (ex.getCause() instanceof ConstraintViolationException) {
             errorCode = ErrorCode.DATA_CONFLICT;
         } else if (ex.getCause() instanceof DataException) {
@@ -49,7 +49,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<?> handleOtherException(HttpServletRequest request) {
-        System.out.println("ALO");
         return ApiResponse.fail(ErrorResponse.build(ErrorCode.INTERNAL_SERVER_ERROR, request));
     }
 

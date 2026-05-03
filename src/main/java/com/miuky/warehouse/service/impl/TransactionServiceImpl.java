@@ -13,7 +13,6 @@ import com.miuky.warehouse.exception.AppException;
 import com.miuky.warehouse.exception.ErrorCode;
 import com.miuky.warehouse.repository.InventoryTransactionRepository;
 import com.miuky.warehouse.repository.ProductRepository;
-import com.miuky.warehouse.security.CustomUserDetails;
 import com.miuky.warehouse.service.iinterface.ITransactionService;
 import com.miuky.warehouse.specification.TransactionSpecification;
 import com.miuky.warehouse.util.SecurityUtils;
@@ -24,14 +23,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class TransactionServiceImpl implements ITransactionService {
     private final InventoryTransactionRepository transactionRepo;
     private final ProductRepository productRepo;
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public ApiResponse<?> importInventory(InventoryImportRequest req) {
         Product productToImport = productRepo.findById(req.productId())
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
@@ -43,7 +45,8 @@ public class TransactionServiceImpl implements ITransactionService {
         return ApiResponse.success(TransactionResponse.from(savedTrans), "Import successfully");
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public ApiResponse<?> exportInventory(InventoryExportRequest req) {
         Product productToImport = productRepo.findById(req.productId())
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));

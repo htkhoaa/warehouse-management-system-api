@@ -25,7 +25,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements IProductService {
     private final ProductRepository productRepo;
     private final CategoryRepository categoryRepo;
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public ApiResponse<?> getAllProducts(int page, int size, String sort, String name, boolean isLowStock, Long categoryId,
-                                            Integer minQty, Integer maxQty) {
+                                         Integer minQty, Integer maxQty) {
         Sort s = sort.endsWith(",desc")
                 ? Sort.by(sort.split(",")[0]).descending()
                 : Sort.by(sort.split(",")[0]).ascending();
@@ -57,7 +58,8 @@ public class ProductServiceImpl implements IProductService {
                 true, null, null, null);
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public ApiResponse<?> createProduct(ProductCreateRequest req) {
         Category currCategory = categoryRepo.findById(req.categoryId())
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
@@ -70,7 +72,8 @@ public class ProductServiceImpl implements IProductService {
         return ApiResponse.success(ProductResponse.from(savedProduct), "Create successfully");
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public ApiResponse<?> updateProduct(Long id, ProductUpdateRequest req) {
         Product p = productRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
         if (!p.isActive()) throw new AppException(ErrorCode.INACTIVE_PRODUCT);
@@ -78,7 +81,8 @@ public class ProductServiceImpl implements IProductService {
         return ApiResponse.success(ProductResponse.from(p), "Update successfully");
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public ApiResponse<?> deleteProduct(Long id) {
         Product p = productRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
         p.setActive(false);

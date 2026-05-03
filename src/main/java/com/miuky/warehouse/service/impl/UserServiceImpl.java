@@ -6,17 +6,15 @@ import com.miuky.warehouse.domain.entity.User;
 import com.miuky.warehouse.exception.AppException;
 import com.miuky.warehouse.exception.ErrorCode;
 import com.miuky.warehouse.repository.UserRepository;
-import com.miuky.warehouse.security.CustomUserDetails;
 import com.miuky.warehouse.service.iinterface.IUserService;
 import com.miuky.warehouse.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
     private final UserRepository userRepo;
 

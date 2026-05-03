@@ -1,9 +1,6 @@
 package com.miuky.warehouse.domain.dto.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.data.domain.Page;
-
-import java.util.function.Function;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ApiResponse<T>(

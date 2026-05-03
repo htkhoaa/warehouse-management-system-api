@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service @RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements ICategoryService {
     private final CategoryRepository categoryRepo;
     private final ProductRepository productRepo;
@@ -30,7 +31,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     public ApiResponse<?> createCategory(CategoryCreateRequest req) {
-        if (categoryRepo.existsByName(req.name())) throw new AppException(ErrorCode.CATEGORY_NAME_ALREADY_EXISTED);
+        if (categoryRepo.existsByName(req.name())) throw new AppException(ErrorCode.CATEGORY_EXISTED);
 
         Category newCategory = Category.builder().name(req.name()).createdBy(SecurityUtils.getUsername())
                 .description(req.description()).build();
@@ -40,7 +41,8 @@ public class CategoryServiceImpl implements ICategoryService {
         return ApiResponse.success(CategoryResponse.from(savedCategory), "Create successfully");
     }
 
-    @Transactional @Override
+    @Transactional
+    @Override
     public ApiResponse<?> updateCategory(Long id, CategoryUpdateRequest req) {
         Category currCategory = categoryRepo.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
@@ -50,11 +52,12 @@ public class CategoryServiceImpl implements ICategoryService {
         return ApiResponse.success(CategoryResponse.from(currCategory), "Update successfully");
     }
 
-    @Transactional @Override
+    @Transactional
+    @Override
     public ApiResponse<?> deleteCategory(Long id) {
         Category currCategory = categoryRepo.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
-        if (productRepo.existsByCategoryId(id)) throw new AppException(ErrorCode.CATEGORY_CAN_BE_DELETED);
+        if (productRepo.existsByCategoryId(id)) throw new AppException(ErrorCode.CATEGORY_CANNOT_BE_DELETED);
 
         currCategory.setActive(false);
         currCategory.setModifiedBy(SecurityUtils.getUsername());

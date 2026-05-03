@@ -30,7 +30,7 @@ public class SecurityUtils {
 
     private static CustomUserDetails getUserDetails() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) throw new AppException(ErrorCode.USER_UNAUTHORIZED);
+        if (auth == null || !auth.isAuthenticated()) throw new AppException(ErrorCode.UNAUTHENTICATED);
         return (CustomUserDetails) auth.getPrincipal();
     }
 }

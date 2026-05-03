@@ -1,12 +1,16 @@
 package com.miuky.warehouse.domain.dto.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 import com.miuky.warehouse.exception.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Builder;
+
 import java.time.Instant;
 
 @Builder
 public record ErrorResponse(
+        @JsonSerialize(using = InstantSerializer.class)
         Instant timestamp,
         int code,
         String message,

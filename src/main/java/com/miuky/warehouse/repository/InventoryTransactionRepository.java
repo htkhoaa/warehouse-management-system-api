@@ -13,11 +13,11 @@ public interface InventoryTransactionRepository extends JpaRepository<InventoryT
         JpaSpecificationExecutor<InventoryTransaction> {
 
     @Query("""
-           SELECT it FROM InventoryTransaction it
-           JOIN FETCH it.user u
-           JOIN FETCH it.product p
-           WHERE it.id = :id 
-           AND (u.username = :username OR u.username = 'admin')
-    """)
+                   SELECT it FROM InventoryTransaction it
+                   JOIN FETCH it.user u
+                   JOIN FETCH it.product p
+                   WHERE it.id = :id
+                   AND (u.username = :username OR u.username = 'admin')
+            """)
     Optional<InventoryTransaction> findByIdAndUsername(Long id, String username);
 }

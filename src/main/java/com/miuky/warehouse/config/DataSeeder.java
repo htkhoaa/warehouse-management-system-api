@@ -1,4 +1,4 @@
-package com.miuky.warehouse.config.init;
+package com.miuky.warehouse.config;
 
 import com.miuky.warehouse.domain.entity.Category;
 import com.miuky.warehouse.domain.entity.Product;
@@ -19,7 +19,8 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Component @RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class DataSeeder implements CommandLineRunner {
     private final UserRepository userRepo;
     private final PasswordEncoder encoder;

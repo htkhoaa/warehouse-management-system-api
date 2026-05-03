@@ -12,7 +12,8 @@ import com.miuky.warehouse.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component @RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class ProductMapperImpl implements IProductMapper {
     private final CategoryRepository categoryRepo;
     private final ProductRepository productRepo;

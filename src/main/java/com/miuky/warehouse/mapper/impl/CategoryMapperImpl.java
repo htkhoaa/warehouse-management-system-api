@@ -8,7 +8,8 @@ import com.miuky.warehouse.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component @RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class CategoryMapperImpl implements ICategoryMapper {
     private final CategoryRepository categoryRepo;
 

@@ -12,7 +12,6 @@ import org.hibernate.annotations.SQLRestriction;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@SQLRestriction("is_active = true")
 public class User extends BaseEntity {
 
     @Column(length = 50, nullable = false, unique = true)

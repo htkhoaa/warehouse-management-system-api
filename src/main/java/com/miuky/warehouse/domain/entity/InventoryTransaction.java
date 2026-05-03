@@ -3,7 +3,6 @@ package com.miuky.warehouse.domain.entity;
 import com.miuky.warehouse.domain.constant.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
@@ -16,7 +15,8 @@ import java.time.Instant;
 @NoArgsConstructor
 @Builder
 public class InventoryTransaction {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

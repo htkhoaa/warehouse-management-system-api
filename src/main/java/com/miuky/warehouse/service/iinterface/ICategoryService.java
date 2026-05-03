@@ -6,7 +6,10 @@ import com.miuky.warehouse.domain.dto.common.ApiResponse;
 
 public interface ICategoryService {
     ApiResponse<?> getAllCategories();
+
     ApiResponse<?> createCategory(CategoryCreateRequest req);
+
     ApiResponse<?> updateCategory(Long id, CategoryUpdateRequest req);
+
     ApiResponse<?> deleteCategory(Long id);
 }

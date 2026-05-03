@@ -3,7 +3,6 @@ package com.miuky.warehouse.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.SQLRestriction;
 
 import java.math.BigDecimal;
 

@@ -1,6 +1,7 @@
 package com.miuky.warehouse.domain.dto.common;
 
 import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public record PageResponse<T>(
