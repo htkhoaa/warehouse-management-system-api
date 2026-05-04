@@ -1,7 +1,6 @@
 package com.miuky.warehouse.domain.dto.common;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.miuky.warehouse.exception.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Builder;
@@ -10,7 +9,7 @@ import java.time.Instant;
 
 @Builder
 public record ErrorResponse(
-        @JsonSerialize(using = InstantSerializer.class)
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
         Instant timestamp,
         int code,
         String message,
